@@ -26,11 +26,11 @@ public class HomeController {
     }
 
     @RequestMapping("/get")
-    String get(@RequestParam Map<String, String> allParams) {
-        if (allParams.size() != 1) {
-            throw  new IllegalArgumentException("Cannot retrieve multuple keys");
+    String get(@RequestParam("key") String key) {
+        if (cache.isEmpty()) {
+            return "there is nothing in the cache";
         }
-        return allParams.get(allParams.keySet().iterator().next());
+        return cache.get(key);
     }
 }
 
